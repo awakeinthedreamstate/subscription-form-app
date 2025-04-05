@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --font-ubuntu: "Ubuntu", "serif";
+
+  /* Primary */
+
+  --color-alabaster: hsl(231, 100%, 99%);
+  --color-marine: hsl(213, 96%, 18%);
+  --color-purple: hsl(243, 100%, 62%);
+  --color-pastel: hsl(228, 100%, 84%);
+  --color-light-blue: hsl(206, 94%, 87%);
+  --color-strawberry: hsl(354, 84%, 57%);
+
+  /* Neutral */
+
+  --color-cool-gray: hsl(231, 11%, 63%);
+  --color-light-gray: hsl(229, 24%, 87%);
+  --color-magnolia: hsl(217, 100%, 97%);
+  --color-white: hsl(0, 0%, 100%);
+}
+
+@layer components {
+  /* utility border styling for development */
+  .dev-border {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+  }
+  .center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Centering divs with absolute positioning */
+  .center-position-x {
+    left: calc(50% - 1px);
+    transform: translate(-50%, 0);
+  }
+
+  /*personal info placeholder text*/
+  .placeholder-weight-bold::placeholder {
+    font-size: 14.7px;
+    font-weight: 700;
+    opacity: 0.6;
+  }
+
+  /*personal info input field*/
+  .personal-info-input {
+    @apply w-full px-4 py-[9px] border border-gray-300 rounded-sm text-sm;
+  }
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("/assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("/assets/fonts/Ubuntu-Medium.ttf") format("truetype");
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("/assets/fonts/Ubuntu-Bold.ttf") format("truetype");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
