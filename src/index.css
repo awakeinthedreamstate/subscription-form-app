@@ -8,6 +8,7 @@
   --color-alabaster: hsl(231, 100%, 99%);
   --color-marine: hsl(213, 96%, 18%);
   --color-purple: hsl(243, 100%, 62%);
+  --color-purple-dull: rgba(71, 61, 255, 0.6);
   --color-pastel: hsl(228, 100%, 84%);
   --color-light-blue: hsl(206, 94%, 87%);
   --color-strawberry: hsl(354, 84%, 57%);
@@ -23,14 +24,11 @@
 @layer components {
   /* utility border styling for development */
   .dev-border {
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
+    @apply border border-black border-solid;
   }
+
   .center-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @apply flex justify-center items-center;
   }
 
   /* Centering divs with absolute positioning */
@@ -48,7 +46,14 @@
 
   /*personal info input field*/
   .personal-info-input {
-    @apply w-full px-4 py-[9px] border border-gray-300 rounded-sm text-sm;
+    @apply w-full px-4 py-[9px] border border-gray-300 rounded-sm 
+    text-sm focus:outline-none focus:ring-0 focus:ring-purple 
+    focus:border-purple hover:border-purple-dull;
+  }
+
+  /*Selected subscription Plan style*/
+  .subscription-select-style {
+    @apply outline-none ring-1 ring-purple-100 border-purple bg-magnolia;
   }
 }
 

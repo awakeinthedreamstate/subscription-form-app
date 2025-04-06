@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import FormHeader from "./FormHeader";
 import PersonalInfo from "./form-pages/PersonalInfo";
+import SubscriptionPlans from "./form-pages/SubscriptionPlans";
+import Addons from "./form-pages/Addons";
+import Summary from "./form-pages/Summary";
 
 export default function FormArea() {
   return (
@@ -10,7 +13,7 @@ export default function FormArea() {
     >
       <FormHeader />
       <div>
-        <PersonalInfo />
+        <Summary />
       </div>
     </section>
   );
