@@ -13,7 +13,7 @@ export default function FormArea() {
     >
       <FormHeader />
       <div>
-        <Summary />
+        <Addons />
       </div>
     </section>
   );

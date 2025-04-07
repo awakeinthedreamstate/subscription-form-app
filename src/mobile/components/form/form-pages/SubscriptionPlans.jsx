@@ -1,39 +1,47 @@
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useFormContext } from "@/context/FormContext";
+import PlanLoading from "@/mobile/components/form/utility/PlanLoading";
 import arcadeIcon from "/assets/images/icon-arcade.svg";
 import advancedIcon from "/assets/images/icon-advanced.svg";
 import proIcon from "/assets/images/icon-pro.svg";
 
-const subPlans = [
-  {
-    id: "arcade",
-    name: "Arcade",
-    price: { month: "$9", year: "$90" },
-    icon: arcadeIcon,
-  },
-  {
-    id: "advanced",
-    name: "Advanced",
-    price: { month: "$12", year: "$120" },
-    icon: advancedIcon,
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    price: { month: "$15", year: "$150" },
-    icon: proIcon,
-  },
-];
+const icons = [arcadeIcon, advancedIcon, proIcon];
+// const subPlans = [
+//   {
+//     id: "arcade",
+//     name: "Arcade",
+//     price: { month: "$9", year: "$90" },
+//     icon: arcadeIcon,
+//   },
+//   {
+//     id: "advanced",
+//     name: "Advanced",
+//     price: { month: "$12", year: "$120" },
+//     icon: advancedIcon,
+//   },
+//   {
+//     id: "pro",
+//     name: "Pro",
+//     price: { month: "$15", year: "$150" },
+//     icon: proIcon,
+//   },
+// ];
 
 export default function subscriptionPlans() {
+  const { subscriptionInfo } = useFormContext();
   const [selected, setSelected] = useState(null);
   const [monthlyCycle, setMonthlyCycle] = useState(true);
 
+  if (!subscriptionInfo || !subscriptionInfo.plans) {
+    return <PlanLoading />; // Render a loading state
+  }
+
   return (
     <div className="w-[calc(100%-48px)] h-auto mx-auto flex flex-col gap-3">
-      {subPlans.map((plan) => (
+      {subscriptionInfo.plans.map((plan, index) => (
         <label
           key={plan.id}
-          className={`flex  px-4 py-[18px] border rounded-lg cursor-pointer gap-4 
+          className={`flex px-4 py-[18px] border rounded-lg cursor-pointer gap-4 
             ${selected === plan.id ? "subscription-select-style" : "border-gray-300"}`}
         >
           <input
@@ -45,13 +53,13 @@ export default function subscriptionPlans() {
             className="hidden"
           />
           <div className={`w-10 h-10 flex items-center justify-center text-xl`}>
-            <img src={plan.icon} />
+            <img src={icons[index]} alt={plan.id} />
           </div>
           <div className="flex flex-col gap-[8px]">
             <p className="font-medium text-marine leading-none">{plan.name}</p>
             <p className="text-cool-gray text-sm leading-none">
-              <span>{monthlyCycle ? plan.price.month : plan.price.year}</span>/
-              <span>{monthlyCycle ? "mo" : "yr"}</span>
+              <span>{monthlyCycle ? plan.priceMonthly : plan.priceYearly}</span>
+              /<span>{monthlyCycle ? "mo" : "yr"}</span>
             </p>
             {monthlyCycle ? (
               <></>

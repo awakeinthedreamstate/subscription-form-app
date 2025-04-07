@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useFormContext } from "@/context/FormContext";
+import AddonLoading from "@/mobile/components/form/utility/AddonLoading";
 import { FaCheck } from "react-icons/fa";
 
 const addonOptions = [
@@ -23,6 +25,7 @@ const addonOptions = [
 ];
 
 export default function Addons() {
+  const { subscriptionInfo } = useFormContext();
   const [selected, setSelected] = useState([]);
   const [monthlyCycle, setMonthlyCycle] = useState(true);
 
@@ -33,9 +36,13 @@ export default function Addons() {
     );
   };
 
+  if (!subscriptionInfo || !subscriptionInfo.addons) {
+    return <AddonLoading />; // Render a loading state
+  }
+
   return (
     <div className="w-[calc(100%-48px)] h-auto mx-auto flex flex-col gap-3">
-      {addonOptions.map((addon) => {
+      {subscriptionInfo.addons.map((addon) => {
         const isChecked = selected.includes(addon.id);
         return (
           <label
@@ -59,7 +66,7 @@ export default function Addons() {
               </div>
               <div className="flex flex-col gap-[4px]">
                 <p className="font-bold text-marine text-sm leading-none">
-                  {addon.title}
+                  {addon.name}
                 </p>
                 <p className="text-cool-gray antialiased text-xs leading-none">
                   {addon.description}
@@ -69,8 +76,8 @@ export default function Addons() {
             <div className="flex items-center">
               <p className="text-purple text-[12px] leading-none">
                 {monthlyCycle
-                  ? `+${addon.price.month}/mo`
-                  : `+${addon.price.year}/yr`}
+                  ? `+${addon.priceMonthly}/mo`
+                  : `+${addon.priceYearly}/yr`}
               </p>
             </div>
           </label>

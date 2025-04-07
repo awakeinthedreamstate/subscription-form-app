@@ -1,7 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import subscriptionService from "../services/subscriptionService";
 const FormContext = createContext();
 
 export function FormContextProvider({ children }) {
+  const [subscriptionInfo, setSubscriptionInfo] = useState({});
   // Define the state for the user's selections
   const [userInfo, setUserInfo] = useState({
     personalInfo: {
@@ -15,8 +17,38 @@ export function FormContextProvider({ children }) {
     currentPage: 1,
   });
 
+  useEffect(() => {
+    fetchSubscriptionInfo();
+  }, []);
+
+  const fetchSubscriptionInfo = async () => {
+    try {
+      const plans_response = await subscriptionService.getPlans();
+      const addons_response = await subscriptionService.getAddons();
+
+      if (plans_response?.error) {
+        console.error("Error fetching plans:", plans.error);
+        return;
+      } else if (addons_response?.error) {
+        console.error("Error fetching addons:", addons.error);
+        return;
+      } else {
+        const plans = await plans_response.json();
+        const addons = await addons_response.json();
+        setSubscriptionInfo({
+          plans: plans.documents,
+          addons: addons.documents,
+        });
+        console.log("Plans:", plans.documents);
+        console.log("Addons:", addons.documents);
+      }
+    } catch (error) {
+      console.error("Error fetching subscription info:", error);
+    }
+  };
+
   return (
-    <FormContext.Provider value={{ userInfo, setUserInfo }}>
+    <FormContext.Provider value={{ userInfo, setUserInfo, subscriptionInfo }}>
       {children}
     </FormContext.Provider>
   );
