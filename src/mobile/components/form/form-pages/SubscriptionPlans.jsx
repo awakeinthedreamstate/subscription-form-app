@@ -28,9 +28,21 @@ const icons = [arcadeIcon, advancedIcon, proIcon];
 // ];
 
 export default function subscriptionPlans() {
-  const { subscriptionInfo } = useFormContext();
+  const { subscriptionInfo, setUserInfo } = useFormContext();
   const [selected, setSelected] = useState(null);
   const [monthlyCycle, setMonthlyCycle] = useState(true);
+
+  // Function to handle the plan selection
+  const handlePlan = (plan) => {
+    setUserInfo((prev) => ({
+      ...prev,
+      plan: {
+        name: plan.name,
+        priceMonthly: plan.priceMonthly,
+        priceYearly: plan.priceYearly,
+      },
+    }));
+  };
 
   if (!subscriptionInfo || !subscriptionInfo.plans) {
     return <PlanLoading />; // Render a loading state
@@ -49,7 +61,7 @@ export default function subscriptionPlans() {
             name="plan"
             value={plan.id}
             checked={selected === plan.id}
-            onChange={() => setSelected(plan.id)}
+            onChange={() => setSelected(plan.id)} //Change this to handlePlan(plan)
             className="hidden"
           />
           <div className={`w-10 h-10 flex items-center justify-center text-xl`}>

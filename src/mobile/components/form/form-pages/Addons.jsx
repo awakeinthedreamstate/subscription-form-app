@@ -3,29 +3,8 @@ import { useFormContext } from "@/context/FormContext";
 import AddonLoading from "@/mobile/components/form/utility/AddonLoading";
 import { FaCheck } from "react-icons/fa";
 
-const addonOptions = [
-  {
-    id: "online",
-    title: "Online service",
-    description: "Access to multiplayer games",
-    price: { month: "$1", year: "$10" },
-  },
-  {
-    id: "storage",
-    title: "Larger storage",
-    description: "Extra 1TB of cloud save",
-    price: { month: "$2", year: "$20" },
-  },
-  {
-    id: "profile",
-    title: "Customizable profile",
-    description: "Custom theme on your profile",
-    price: { month: "$2", year: "$20" },
-  },
-];
-
 export default function Addons() {
-  const { subscriptionInfo } = useFormContext();
+  const { subscriptionInfo, setUserInfo } = useFormContext();
   const [selected, setSelected] = useState([]);
   const [monthlyCycle, setMonthlyCycle] = useState(true);
 
@@ -34,6 +13,12 @@ export default function Addons() {
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
     );
+    setUserInfo((prev) => ({
+      ...prev, // Spread the previous state
+      addons: prev.addons.includes(id)
+        ? prev.addons.filter((f) => f != id)
+        : [...prev.addons, id],
+    }));
   };
 
   if (!subscriptionInfo || !subscriptionInfo.addons) {

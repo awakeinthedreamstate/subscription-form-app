@@ -11,9 +11,9 @@ export function FormContextProvider({ children }) {
       email: "",
       phone: "",
     },
-    subPlan: null, //subscription plan can be either Arcade, Advanced or Pro (0, 1 or 2)
+    plan: { name: "", priceMonthly: "", priceYearly: "" }, //subscription plan can be either Arcade, Advanced or Pro (0, 1 or 2)
     monthlyCycle: true, //billing cycle can be either monthly or yearly (yerly if false)
-    addOns: [], //available add-ons are online service, larger storage or custom profile
+    addons: [], //available add-ons are online service, larger storage or custom profile
     currentPage: 1,
   });
 
