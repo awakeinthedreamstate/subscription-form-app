@@ -13,7 +13,7 @@ export default function FormArea() {
     >
       <FormHeader />
       <div>
-        <SubscriptionPlans />
+        <PersonalInfo />
       </div>
     </section>
   );

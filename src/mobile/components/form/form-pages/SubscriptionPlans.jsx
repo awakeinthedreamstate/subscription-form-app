@@ -1,4 +1,4 @@
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { useFormContext } from "@/context/FormContext";
 import PlanLoading from "@/mobile/components/form/utility/PlanLoading";
 import arcadeIcon from "/assets/images/icon-arcade.svg";
@@ -29,7 +29,7 @@ const icons = [arcadeIcon, advancedIcon, proIcon];
 
 export default function subscriptionPlans() {
   const { subscriptionInfo, setUserInfo } = useFormContext();
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState("");
   const [monthlyCycle, setMonthlyCycle] = useState(true);
 
   // Function to handle the plan selection
@@ -43,6 +43,11 @@ export default function subscriptionPlans() {
       },
     }));
   };
+
+  // Set the default selected plan to the first plan
+  useEffect(() => {
+    setSelected(subscriptionInfo.plans[0].id);
+  }, [subscriptionInfo]);
 
   if (!subscriptionInfo || !subscriptionInfo.plans) {
     return <PlanLoading />; // Render a loading state
