@@ -2,7 +2,7 @@ import MobileView from "./mobile/MobileView";
 
 function App() {
   return (
-    <div id="App">
+    <div id="App" className="dev-border">
       <MobileView />
     </div>
   );

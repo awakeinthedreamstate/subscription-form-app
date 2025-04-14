@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormContext } from "@/context/FormContext";
 import AddonLoading from "@/mobile/components/form/utility/AddonLoading";
 import { FaCheck } from "react-icons/fa";
 
 export default function Addons() {
-  const { subscriptionInfo, setUserInfo } = useFormContext();
+  const { subscriptionInfo, setUserInfo, userInfo } = useFormContext();
   const [selected, setSelected] = useState([]);
   const [monthlyCycle, setMonthlyCycle] = useState(true);
 
-  // Function to handle the add-on toggling
+  useEffect(() => {
+    if (Array.isArray(userInfo.addons)) {
+      setSelected(userInfo.addons);
+    }
+  }, [userInfo.addons]);
+
   const handleToggle = (id) => {
+    // Toggle the selected state of the add-on
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
     );
@@ -60,7 +66,7 @@ export default function Addons() {
             </div>
             <div className="flex items-center">
               <p className="text-purple text-[12px] leading-none">
-                {monthlyCycle
+                {userInfo.monthlyCycle
                   ? `+${addon.priceMonthly}/mo`
                   : `+${addon.priceYearly}/yr`}
               </p>

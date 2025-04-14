@@ -28,12 +28,17 @@ const icons = [arcadeIcon, advancedIcon, proIcon];
 // ];
 
 export default function subscriptionPlans() {
-  const { subscriptionInfo, setUserInfo } = useFormContext();
-  const [selected, setSelected] = useState("");
-  const [monthlyCycle, setMonthlyCycle] = useState(true);
+  const { subscriptionInfo, setUserInfo, userInfo } = useFormContext();
+  const [selected, setSelected] = useState(
+    userInfo.plan && userInfo.plan.name
+      ? subscriptionInfo.plans.find((plan) => plan.name === userInfo.plan.name)
+          ?.id
+      : ""
+  );
 
   // Function to handle the plan selection
   const handlePlan = (plan) => {
+    setSelected(plan.id);
     setUserInfo((prev) => ({
       ...prev,
       plan: {
@@ -44,10 +49,24 @@ export default function subscriptionPlans() {
     }));
   };
 
+  const handleMonthlyCycle = () => {
+    console.log("handling...");
+    setUserInfo((prev) => ({
+      ...prev,
+      monthlyCycle: !prev.monthlyCycle,
+    }));
+  };
+
   // Set the default selected plan to the first plan
   useEffect(() => {
-    setSelected(subscriptionInfo.plans[0].id);
-  }, [subscriptionInfo]);
+    if (
+      subscriptionInfo.plans &&
+      subscriptionInfo.plans.length > 0 &&
+      (!userInfo.plan || !userInfo.plan.name)
+    ) {
+      handlePlan(subscriptionInfo.plans[0]);
+    }
+  }, [subscriptionInfo.plans, userInfo.plan]);
 
   if (!subscriptionInfo || !subscriptionInfo.plans) {
     return <PlanLoading />; // Render a loading state
@@ -66,7 +85,7 @@ export default function subscriptionPlans() {
             name="plan"
             value={plan.id}
             checked={selected === plan.id}
-            onChange={() => setSelected(plan.id)} //Change this to handlePlan(plan)
+            onChange={() => handlePlan(plan)} //Change this to handlePlan(plan)
             className="hidden"
           />
           <div className={`w-10 h-10 flex items-center justify-center text-xl`}>
@@ -75,10 +94,12 @@ export default function subscriptionPlans() {
           <div className="flex flex-col gap-[8px]">
             <p className="font-medium text-marine leading-none">{plan.name}</p>
             <p className="text-cool-gray text-sm leading-none">
-              <span>{monthlyCycle ? plan.priceMonthly : plan.priceYearly}</span>
-              /<span>{monthlyCycle ? "mo" : "yr"}</span>
+              <span>
+                {userInfo.monthlyCycle ? plan.priceMonthly : plan.priceYearly}
+              </span>
+              /<span>{userInfo.monthlyCycle ? "mo" : "yr"}</span>
             </p>
-            {monthlyCycle ? (
+            {userInfo.monthlyCycle ? (
               <></>
             ) : (
               <p className="text-marine text-sm leading-none">2 months free</p>
@@ -90,23 +111,23 @@ export default function subscriptionPlans() {
       <div className="bg-magnolia h-12 rounded-lg flex justify-center items-center mt-3">
         <div className="w-[calc(100%-112px)] flex justify-between items-center gap-2">
           <label
-            className={`text-sm ${monthlyCycle ? "text-marine" : "text-cool-gray"}`}
+            className={`text-sm ${userInfo.monthlyCycle ? "text-marine" : "text-cool-gray"}`}
           >
             Monthly
           </label>
           <button
             className="w-[42px] h-[22px] px-1 bg-marine rounded-full cursor-pointer"
-            onClick={() => setMonthlyCycle(!monthlyCycle)}
+            onClick={handleMonthlyCycle}
             type="button"
           >
             <div
               className={`w-[14px] h-[14px] rounded-full bg-alabaster 
             transition-transform duration-300 
-            ${monthlyCycle ? "translate-x-0" : "translate-x-[calc(150%-1px)]"}`}
+            ${userInfo.monthlyCycle ? "translate-x-0" : "translate-x-[calc(150%-1px)]"}`}
             ></div>
           </button>
           <label
-            className={`text-sm ${monthlyCycle ? "text-cool-gray" : "text-marine"}`}
+            className={`text-sm ${userInfo.monthlyCycle ? "text-cool-gray" : "text-marine"}`}
           >
             Yearly
           </label>

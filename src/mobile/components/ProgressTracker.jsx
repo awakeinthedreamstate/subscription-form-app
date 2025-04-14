@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
+import { useFormContext } from "@/context/FormContext";
 
 export default function ProgressTracker() {
-  const [activeStep, setActiveStep] = useState(4);
+  const { currentPage } = useFormContext();
 
   //define the styles for active and inactive steps
   const activeStyle = "bg-light-blue text-marine border-light-blue";
@@ -18,7 +19,7 @@ export default function ProgressTracker() {
             key={step}
             className={`w-8 h-8 border-1 border-solid flex justify-center 
                 items-center rounded-full ${
-                  activeStep === step ? activeStyle : inactiveStyle
+                  currentPage === step ? activeStyle : inactiveStyle
                 }`}
           >
             {step}

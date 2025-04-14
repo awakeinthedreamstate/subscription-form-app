@@ -1,8 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import subscriptionService from "../services/subscriptionService";
 const FormContext = createContext();
 
 export function FormContextProvider({ children }) {
+  const [currentPage, setCurrentPage] = useState(1);
   const [subscriptionInfo, setSubscriptionInfo] = useState({});
   // Define the state for the user's selections
   const [userInfo, setUserInfo] = useState({
@@ -14,12 +16,21 @@ export function FormContextProvider({ children }) {
     plan: { name: "", priceMonthly: "", priceYearly: "" }, //subscription plan can be either Arcade, Advanced or Pro (0, 1 or 2)
     monthlyCycle: true, //billing cycle can be either monthly or yearly (yerly if false)
     addons: [], //available add-ons are online service, larger storage or custom profile
-    currentPage: 1,
   });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     fetchSubscriptionInfo();
   }, []);
+
+  useEffect(() => {
+    console.log("User Info:", userInfo);
+  }, [userInfo]);
 
   const fetchSubscriptionInfo = async () => {
     try {
@@ -39,8 +50,8 @@ export function FormContextProvider({ children }) {
           plans: plans.documents,
           addons: addons.documents,
         });
-        console.log("Plans:", plans.documents);
-        console.log("Addons:", addons.documents);
+        // console.log("Plans:", plans.documents);
+        // console.log("Addons:", addons.documents);
       }
     } catch (error) {
       console.error("Error fetching subscription info:", error);
@@ -48,7 +59,18 @@ export function FormContextProvider({ children }) {
   };
 
   return (
-    <FormContext.Provider value={{ userInfo, setUserInfo, subscriptionInfo }}>
+    <FormContext.Provider
+      value={{
+        userInfo,
+        setUserInfo,
+        subscriptionInfo,
+        register,
+        handleSubmit,
+        errors,
+        currentPage,
+        setCurrentPage,
+      }}
+    >
       {children}
     </FormContext.Provider>
   );

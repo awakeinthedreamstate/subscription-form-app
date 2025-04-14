@@ -13,28 +13,30 @@ const subSummary = {
 };
 
 export default function Summary() {
-  const { subscriptionInfo, userInfo } = useFormContext();
-  const [selectedAddons, setSelectedAddons] = useState();
+  const { subscriptionInfo, userInfo, setCurrentPage } = useFormContext();
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // useEffect(() => {
-  //   if (subscriptionInfo?.addons && userInfo?.addons) {
-  //     const matchedAddons = subscriptionInfo.addons.filter((addon) =>
-  //       userInfo.addons.includes(addon.id)
-  //     );
-  //     setSelectedAddons(matchedAddons);
-  //   }
-  // }, []);
-
+  //set total price on mount
   useEffect(() => {
-    setSelectedAddons(subscriptionInfo.addons);
+    calculateTotal();
+  }, [userInfo.addons]);
 
-    console.log(`Addons FS:`, selectedAddons);
-  }, [subscriptionInfo]);
-
+  //calculate total price on component mount
   const calculateTotal = () => {
     let total = 0;
-    selectedAddons.forEach((addon) => {
+
+    const planPrice = parseFloat(
+      userInfo.monthlyCycle
+        ? userInfo.plan.priceMonthly.replace("$", "")
+        : userInfo.plan.priceYearly.replace("$", "")
+    );
+    total += planPrice;
+
+    const selectedAddonDetails = subscriptionInfo.addons.filter((addon) =>
+      userInfo.addons.includes(addon.id)
+    );
+
+    selectedAddonDetails.forEach((addon) => {
       const addonPrice = parseFloat(
         userInfo.monthlyCycle
           ? addon.priceMonthly.replace("$", "")
@@ -42,13 +44,13 @@ export default function Summary() {
       );
       total += addonPrice;
     });
-    const planPrice = parseFloat(
-      userInfo.monthlyCycle
-        ? userInfo.plan.priceMonthly.replace("$", "")
-        : userInfo.plan.priceYearly.replace("$", "")
-    );
-    total += planPrice;
+
     setTotalPrice(total);
+  };
+
+  //switch back to plan selection page
+  const handleChangePlan = () => {
+    setCurrentPage(2);
   };
 
   if (!subscriptionInfo?.addons || !userInfo?.addons) {
@@ -57,54 +59,55 @@ export default function Summary() {
 
   return (
     <>
-      <div
-        className="w-[calc(100%-48px)] mb-[22px] rounded-lg bg-magnolia 
-    h-auto mx-auto flex flex-col pt-5 px-4 pb-[20px]"
-      >
+      <div className="w-[calc(100%-48px)] mb-[22px] rounded-lg bg-magnolia h-auto mx-auto flex flex-col pt-5 px-4 pb-[20px]">
         <div
           id="cost-summary"
           className="w-full flex justify-between items-center"
         >
           <div id="plan-container" className="leading-none">
-            <p className="text-[13.5px] font-bold text-marine">{`${subSummary.plan} (${subSummary.billingCycle ? "Monthly" : "Yearly"})`}</p>
+            <p className="text-[13.5px] font-bold text-marine">{`${userInfo.plan.name} (${userInfo.monthlyCycle ? "Monthly" : "Yearly"})`}</p>
             <button
               id="change-plan"
               type="button"
+              onClick={handleChangePlan}
               className="text-sm cursor-pointer underline text-cool-gray font-light"
             >
               Change
             </button>
           </div>
           <div>
-            <p
-              id="plan-price"
-              className="text-sm font-bold text-marine"
-            >{`${subSummary.price}/${subSummary.billingCycle ? "mo" : "yr"}`}</p>
+            <p id="plan-price" className="text-sm font-bold text-marine">
+              {userInfo.monthlyCycle
+                ? `${userInfo.plan.priceMonthly}/mo`
+                : `${userInfo.plan.priceYearly}/yr`}
+            </p>
           </div>
         </div>
-        {/* {userInfo.addons.length() != 0 && <hr className="my-3 border-t border-gray-300" />} */}
-        <hr className="my-4 border-t border-gray-300" />
+        {userInfo.addons.length != 0 && (
+          <hr className="my-3 border-t border-gray-300" />
+        )}
         <div className="flex flex-col gap-4">
-          {selectedAddons?.map((addon) => (
-            <div
-              key={addon.id}
-              className="w-full flex justify-between items-center"
-            >
-              <p className="text-sm text-cool-gray leading-none">
-                {addon.name}
-              </p>
-              <p className="text-xs text-marine leading-none">{`+${subSummary.billingCycle ? addon.priceMonthly : addon.priceYearly}/${subSummary.billingCycle ? "mo" : "yr"}`}</p>
-            </div>
-          ))}
+          {subscriptionInfo.addons
+            .filter((addon) => userInfo.addons.includes(addon.id))
+            .map((addon) => (
+              <div
+                key={addon.id}
+                className="w-full flex justify-between items-center"
+              >
+                <p className="text-sm text-cool-gray leading-none">
+                  {addon.name}
+                </p>
+                <p className="text-xs text-marine leading-none">{`+${userInfo.monthlyCycle ? addon.priceMonthly : addon.priceYearly}/${userInfo.monthlyCycle ? "mo" : "yr"}`}</p>
+              </div>
+            ))}
         </div>
       </div>
       <div
         id="total-bill"
         className="w-[calc(100%-48px)] flex justify-between items-center py-1 px-4 mx-auto"
       >
-        <p className="text-sm text-cool-gray leading-none">{`Total (per ${subSummary.billingCycle ? "month" : "year"})`}</p>
-        <p className="text-base text-purple leading-none">{`+${subSummary.total}/${subSummary.billingCycle ? "mo" : "yr"}`}</p>
-        {/* <p className="text-base text-purple leading-none">{`+$${totalPrice}/${subSummary.billingCycle ? "mo" : "yr"}`}</p> */}
+        <p className="text-sm text-cool-gray leading-none">{`Total (per ${userInfo.monthlyCycle ? "month" : "year"})`}</p>
+        <p className="text-base text-purple leading-none">{`$${totalPrice}/${userInfo.monthlyCycle ? "mo" : "yr"}`}</p>
       </div>
     </>
   );

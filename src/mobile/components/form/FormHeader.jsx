@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useFormContext } from "@/context/FormContext";
 
 export default function FormHeader() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const { currentPage } = useFormContext();
 
   const headers = [
     "Personal info",
