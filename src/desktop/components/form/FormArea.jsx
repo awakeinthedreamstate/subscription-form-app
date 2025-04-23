@@ -52,8 +52,7 @@ export default function FormArea() {
         transition={{ duration: 0.2 }}
         className=""
       >
-        {/* {renderPage()} */}
-        <Addons />
+        {renderPage()}
       </motion.div>
     </motion.section>
   );
