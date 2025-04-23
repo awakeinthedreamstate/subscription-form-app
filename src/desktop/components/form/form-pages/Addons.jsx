@@ -32,13 +32,13 @@ export default function Addons() {
   }
 
   return (
-    <div className="w-[calc(100%-48px)] h-auto mx-auto flex flex-col gap-3">
+    <div className="w-full h-auto mx-auto flex flex-col gap-3">
       {subscriptionInfo.addons.map((addon) => {
         const isChecked = selected.includes(addon.id);
         return (
           <label
             key={addon.id}
-            className={`flex justify-between px-[14px] py-[14px] border rounded-lg cursor-pointer gap-4  
+            className={`flex justify-between px-[22px] py-[22px] hover:ring-1 hover:ring-purple-100 hover:border-purple border rounded-lg cursor-pointer gap-4  
             ${isChecked ? "subscription-select-style" : "border-gray-300"}`}
           >
             <input
@@ -47,7 +47,7 @@ export default function Addons() {
               onChange={() => handleToggle(addon.id)}
               className="absolute opacity-0 pointer-events-none"
             />
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <div
                 className={`w-5 h-5 rounded-sm flex items-center justify-center border ${
                   isChecked ? "bg-purple border-purple" : "border-gray-400"
@@ -55,17 +55,17 @@ export default function Addons() {
               >
                 {isChecked && <FaCheck className="text-white text-xs" />}
               </div>
-              <div className="flex flex-col gap-[4px]">
-                <p className="font-bold text-marine text-sm leading-none">
+              <div className="flex flex-col gap-[8px]">
+                <p className="font-bold text-marine text-md leading-none">
                   {addon.name}
                 </p>
-                <p className="text-cool-gray antialiased text-xs leading-none">
+                <p className="text-cool-gray antialiased text-sm leading-none">
                   {addon.description}
                 </p>
               </div>
             </div>
             <div className="flex items-center">
-              <p className="text-purple text-[12px] leading-none">
+              <p className="text-purple text-sm leading-none">
                 {userInfo.monthlyCycle
                   ? `+${addon.priceMonthly}/mo`
                   : `+${addon.priceYearly}/yr`}

@@ -53,7 +53,7 @@ export default function FormArea() {
         className=""
       >
         {/* {renderPage()} */}
-        <SubscriptionPlans />
+        <Addons />
       </motion.div>
     </motion.section>
   );
