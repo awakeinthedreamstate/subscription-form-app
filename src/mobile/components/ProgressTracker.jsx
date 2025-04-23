@@ -11,7 +11,7 @@ export default function ProgressTracker() {
   return (
     <section
       className="bg-[url('./assets/images/bg-sidebar-mobile.svg')] w-screen 
-    h-43 flex justify-center pt-8"
+    h-43 flex justify-center pt-8 bg-no-repeat bg-cover bg-center"
     >
       <div className="w-46 h-8 flex justify-between">
         {[1, 2, 3, 4].map((step) => (

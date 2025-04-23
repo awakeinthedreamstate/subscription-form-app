@@ -30,10 +30,7 @@ export default function FormHandler({ children }) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="w-full flex flex-col justify-center"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full relative">
       {children}
     </form>
   );

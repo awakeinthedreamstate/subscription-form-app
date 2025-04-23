@@ -26,19 +26,19 @@ export default function NavButtons() {
 
   return (
     <section
-      className={` ${currentPage === 5 ? "hidden" : ""} h-[74px] px-4 w-full absolute bottom-0 bg-alabaster flex justify-between items-center`}
+      className={` ${currentPage === 5 ? "hidden" : ""} absolute bottom-0 h-[74px] px-[84px] w-full bg-alabaster flex justify-between items-center`}
     >
       <button
         type="button"
         disabled={firstStep}
         onClick={previousPage}
-        className={`text-cool-gray ${firstStep ? "opacity-0 cursor-not-allowed" : ""}`}
+        className={`text-cool-gray ${firstStep ? "opacity-0" : "cursor-pointer"}`}
       >
         Go Back
       </button>
       <button
         type="submit"
-        className={`text-alabaster ${finalStep ? "bg-purple" : "bg-marine"} rounded-md items-center w-24 pt-[8px] pb-[11px]`}
+        className={`text-alabaster ${finalStep ? "bg-purple" : "bg-marine hover:bg-marine-light"} rounded-md items-center cursor-pointer w-30 pt-[10px] pb-[12px]`}
       >
         {finalStep ? "Confirm" : "Next Step"}
       </button>

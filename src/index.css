@@ -7,6 +7,7 @@
 
   --color-alabaster: hsl(231, 100%, 99%);
   --color-marine: hsl(213, 96%, 18%);
+  --color-marine-light: hsl(214, 72%, 32%);
   --color-purple: hsl(243, 100%, 62%);
   --color-purple-dull: rgba(71, 61, 255, 0.6);
   --color-pastel: hsl(228, 100%, 84%);
@@ -24,7 +25,7 @@
 @layer components {
   /* utility border styling for development */
   .dev-border {
-    @apply border border-black border-solid;
+    @apply border-2 border-red-500 border-dashed;
   }
 
   .center-div {
@@ -46,7 +47,7 @@
 
   /*personal info input field*/
   .personal-info-input {
-    @apply w-full px-4 py-[9px] border rounded-sm 
+    @apply w-full px-4 py-[13px] border rounded-md 
     text-sm font-bold text-marine focus:outline-none focus:ring-0 hover:border-purple-dull;
   }
 
@@ -61,6 +62,11 @@
   /*Selected subscription Plan style*/
   .subscription-select-style {
     @apply outline-none ring-1 ring-purple-100 border-purple bg-magnolia;
+  }
+
+  /*Hovered Subscription Plan style*/
+  .subscription-hover-style {
+    @apply outline-none ring-1 ring-purple-100 border-purple;
   }
 }
 

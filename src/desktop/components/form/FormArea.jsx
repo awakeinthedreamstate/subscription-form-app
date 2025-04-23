@@ -35,8 +35,7 @@ export default function FormArea() {
 
   return (
     <motion.section
-      className="w-[calc(100%-2rem)] sm:w-[calc(100%-8rem)] bg-alabaster rounded-lg relative
-    top-[-72px] h-auto pb-8 mx-auto shadow-md"
+      className="w-full px-[84px] bg-alabaster h-auto pb-8 mx-auto"
       layout
       transition={{
         duration: 0.3, // Adjust duration for smoothness
@@ -51,8 +50,10 @@ export default function FormArea() {
         animate="animate"
         exit="exit"
         transition={{ duration: 0.2 }}
+        className=""
       >
-        {renderPage()}
+        {/* {renderPage()} */}
+        <SubscriptionPlans />
       </motion.div>
     </motion.section>
   );
