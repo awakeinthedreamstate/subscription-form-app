@@ -40,7 +40,7 @@ Users should be able to:
 
 ### Links
 
-[![github](https://img.shields.io/badge/github-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/awakeinthedreamstate/conference-ticket-generator/tree/main/ticketgeneratorapp) [![vercel](https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ticketgeneratorapp-olive.vercel.app/) [![frontend-mentor](https://img.shields.io/badge/frontend_mentor-0A66C2?style=for-the-badge&logo=github&logoColor=white)](https://www.frontendmentor.io/challenges/conference-ticket-generator-oq5gFIU12w)
+[![github](https://img.shields.io/badge/github-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/awakeinthedreamstate/subscription-form-app) [![vercel](https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ticketgeneratorapp-olive.vercel.app/) [![frontend-mentor](https://img.shields.io/badge/frontend_mentor-0A66C2?style=for-the-badge&logo=github&logoColor=white)](https://www.frontendmentor.io/challenges/conference-ticket-generator-oq5gFIU12w)
 
 ### Built with
 
