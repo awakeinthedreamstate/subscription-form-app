@@ -24,6 +24,7 @@ export default function PersonalInfo() {
           className={`personal-info-input ${errors.personalInfo?.name ? "input-error-state" : "input-no-error-state"} placeholder-weight-bold`}
           {...register("personalInfo.name", { required: ALERT_MESSAGE })}
           placeholder="e.g. Stephen King"
+          aria-label="name"
         ></input>
       </div>
       <div className="mb-[20px]">
@@ -56,6 +57,7 @@ export default function PersonalInfo() {
             },
           })}
           placeholder="e.g. stephenking@lorem.com"
+          aria-label="email-input"
         ></input>
       </div>
       <div className="">
@@ -83,6 +85,7 @@ export default function PersonalInfo() {
             },
           })}
           placeholder="e.g. +1 234 567 890"
+          aria-label="phone-input"
         ></input>
       </div>
     </div>
