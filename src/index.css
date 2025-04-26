@@ -45,6 +45,22 @@
     opacity: 0.6;
   }
 
+  /*background for header area in mobile view*/
+  .header-bg-mobile {
+    background-image: url("./assets/images/bg-sidebar-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /*background for sibebar area in desktop view*/
+  .sidebar-bg-desktop {
+    background-image: url("./assets/images/bg-sidebar-desktop.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
   /*personal info input field*/
   .personal-info-input {
     @apply w-full px-4 py-[13px] border rounded-md 

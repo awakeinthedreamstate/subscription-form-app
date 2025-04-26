@@ -8,7 +8,7 @@ export default function ProgressTracker() {
   const inactiveStyle = "text-alabaster border-alabaster";
 
   return (
-    <section className="bg-[url('./assets/images/bg-sidebar-mobile.svg')] w-screen h-43 flex justify-center pt-8 bg-no-repeat bg-cover bg-center">
+    <section className="header-bg-mobile w-screen h-43 flex justify-center pt-8">
       <div className="flex justify-between h-8 w-46">
         {[1, 2, 3, 4].map((step) => (
           <div

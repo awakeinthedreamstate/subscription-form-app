@@ -11,7 +11,7 @@ export default function ProgressTracker() {
   const stepLabels = ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"];
 
   return (
-    <section className="bg-[url('./assets/images/bg-sidebar-desktop.svg')] min-w-[272px] h-full flex pt-10 pl-[30px] bg-no-repeat bg-cover bg-center rounded-xl">
+    <section className="sidebar-bg-desktop min-w-[272px] h-full flex pt-10 pl-[30px] rounded-xl">
       <div className="w-46 h-8 flex flex-col gap-[32px] justify-between">
         {[1, 2, 3, 4].map((step) => (
           <div className="flex gap-4">
