@@ -38,6 +38,7 @@ export default function FormArea() {
   return (
     <motion.section
       className="w-full min-w-[527px] lg:px-[40px] xl:px-[84px] h-auto pb-8 mx-auto"
+      aria-label="form area"
       layout
       transition={{
         duration: 0.1, // Adjust duration for smoothness
