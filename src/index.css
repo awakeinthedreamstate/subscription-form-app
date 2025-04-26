@@ -7,6 +7,7 @@
 
   --color-alabaster: hsl(231, 100%, 99%);
   --color-marine: hsl(213, 96%, 18%);
+  --color-marine-light: hsl(214, 72%, 32%);
   --color-purple: hsl(243, 100%, 62%);
   --color-purple-dull: rgba(71, 61, 255, 0.6);
   --color-pastel: hsl(228, 100%, 84%);
@@ -24,7 +25,7 @@
 @layer components {
   /* utility border styling for development */
   .dev-border {
-    @apply border border-black border-solid;
+    @apply border-2 border-red-500 border-dashed;
   }
 
   .center-div {
@@ -46,14 +47,34 @@
 
   /*personal info input field*/
   .personal-info-input {
-    @apply w-full px-4 py-[9px] border border-gray-300 rounded-sm 
-    text-sm focus:outline-none focus:ring-0 focus:ring-purple 
-    focus:border-purple hover:border-purple-dull;
+    @apply w-full px-4 py-[13px] border rounded-md 
+    text-sm font-bold text-marine focus:outline-none focus:ring-0 hover:border-purple-dull;
+  }
+
+  /*personal info input error states*/
+  .input-error-state {
+    @apply focus:ring-strawberry focus:border-strawberry border-strawberry;
+  }
+  .input-no-error-state {
+    @apply focus:ring-purple focus:border-purple border-gray-300;
   }
 
   /*Selected subscription Plan style*/
   .subscription-select-style {
     @apply outline-none ring-1 ring-purple-100 border-purple bg-magnolia;
+  }
+
+  /*Hovered Subscription Plan style*/
+  .subscription-hover-style {
+    @apply outline-none ring-1 ring-purple-100 border-purple;
+  }
+
+  /*Desktop view margins*/
+  .margin-clamp {
+    margin-top: clamp(10px, calc((100vh - 600px) / 2), 200px);
+    margin-bottom: clamp(10px, calc((100vh - 600px) / 2), 200px);
+    margin-left: clamp(10px, calc((100vw - 940px) / 2), 700px);
+    margin-right: clamp(10px, calc((100vw - 940px) / 2), 700px);
   }
 }
 

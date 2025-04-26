@@ -6,11 +6,12 @@ import SubscriptionPlans from "./form-pages/SubscriptionPlans";
 import Addons from "./form-pages/Addons";
 import Summary from "./form-pages/Summary";
 import PurchaseConfirm from "./form-pages/PurchaseConfirm";
+import PlanLoading from "./utility/PlanLoading";
+import AddonLoading from "./utility/AddonLoading";
 
 export default function FormArea() {
   const { currentPage } = useFormContext();
 
-  //animation variants
   const pageVariants = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
@@ -36,11 +37,11 @@ export default function FormArea() {
 
   return (
     <motion.section
-      className="w-[calc(100%-2rem)] sm:w-[calc(100%-8rem)] bg-alabaster rounded-lg relative top-[-72px] h-auto pb-8 mx-auto shadow-md"
+      className="w-full min-w-[527px] lg:px-[40px] xl:px-[84px] h-auto pb-8 mx-auto"
       layout
       transition={{
-        duration: 0.3,
-        ease: "easeInOut",
+        duration: 0.3, // Adjust duration for smoothness
+        ease: "easeInOut", // Easing function
       }}
     >
       {currentPage < 5 ? <FormHeader /> : <></>}
@@ -51,6 +52,7 @@ export default function FormArea() {
         animate="animate"
         exit="exit"
         transition={{ duration: 0.2 }}
+        className=""
       >
         {renderPage()}
       </motion.div>

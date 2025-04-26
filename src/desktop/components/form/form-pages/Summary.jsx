@@ -44,12 +44,15 @@ export default function Summary() {
 
   return (
     <>
-      <div className="w-[calc(100%-48px)] mb-[22px] rounded-lg bg-magnolia h-auto mx-auto flex flex-col pt-5 px-4 pb-[20px]">
+      <div className="w-full mb-[25px] rounded-lg bg-magnolia h-auto mx-auto flex flex-col pt-5 px-[26px] pb-[26px]">
         <div
           id="cost-summary"
           className="flex items-center justify-between w-full"
         >
-          <div id="plan-container" className="leading-none">
+          <div
+            id="plan-container"
+            className="leading-none flex flex-col items-start gap-[4px]"
+          >
             <p className="text-[13.5px] font-bold text-marine">{`${userInfo.plan.name} (${userInfo.monthlyCycle ? "Monthly" : "Yearly"})`}</p>
             <button
               id="change-plan"
@@ -69,9 +72,9 @@ export default function Summary() {
           </div>
         </div>
         {userInfo.addons.length != 0 && (
-          <hr className="my-3 border-t border-gray-300" />
+          <hr className="my-5.5 border-t border-gray-300" />
         )}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-5">
           {subscriptionInfo.addons
             .filter((addon) => userInfo.addons.includes(addon.id))
             .map((addon) => (
@@ -89,7 +92,7 @@ export default function Summary() {
       </div>
       <div
         id="total-bill"
-        className="w-[calc(100%-48px)] flex justify-between items-center py-1 px-4 mx-auto"
+        className="w-full flex justify-between items-center py-1 px-[26px] mx-auto"
       >
         <p className="text-sm leading-none text-cool-gray">{`Total (per ${userInfo.monthlyCycle ? "month" : "year"})`}</p>
         <p className="text-base leading-none text-purple">{`$${totalPrice}/${userInfo.monthlyCycle ? "mo" : "yr"}`}</p>

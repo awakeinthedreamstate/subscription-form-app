@@ -3,7 +3,8 @@ import { useFormContext } from "@/context/FormContext";
 
 export default function NavButtons() {
   const { currentPage, setCurrentPage } = useFormContext();
-  // Define the states for the first and final step of form
+
+  // Define the states for the first and final step of form-filling
   const [finalStep, setFinalStep] = useState(false);
   const [firstStep, setFirstStep] = useState(false);
 
@@ -23,19 +24,19 @@ export default function NavButtons() {
 
   return (
     <section
-      className={` ${currentPage === 5 ? "hidden" : ""} h-[74px] px-4 w-full absolute bottom-0 bg-alabaster flex justify-between items-center`}
+      className={` ${currentPage === 5 ? "hidden" : ""} absolute bottom-0 h-[74px] lg:px-[40px] xl:px-[84px] w-full flex justify-between items-center`}
     >
       <button
         type="button"
         disabled={firstStep}
         onClick={previousPage}
-        className={`text-cool-gray ${firstStep ? "opacity-0" : ""}`}
+        className={`text-cool-gray ${firstStep ? "opacity-0" : "cursor-pointer"}`}
       >
         Go Back
       </button>
       <button
         type="submit"
-        className={`text-alabaster ${finalStep ? "bg-purple" : "bg-marine"} rounded-md items-center w-24 pt-[8px] pb-[11px]`}
+        className={`text-alabaster ${finalStep ? "bg-purple" : "bg-marine hover:bg-marine-light"} rounded-md items-center cursor-pointer w-30 pt-[10px] pb-[12px]`}
       >
         {finalStep ? "Confirm" : "Next Step"}
       </button>

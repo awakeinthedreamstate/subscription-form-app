@@ -17,9 +17,13 @@ export default function FormHeader() {
   ];
 
   return (
-    <header className="w-[calc(100%-48px)] mx-auto mt-7 mb-[16px]">
-      <h1 className="mb-2 text-2xl text-marine">{headers[currentPage - 1]}</h1>
-      <p className="font-light text-cool-gray">{subHeaders[currentPage - 1]}</p>
+    <header className="w-full mx-auto mt-[34px] mb-[38px]">
+      <h1 className="text-[2rem] font-bold mb-[3px] text-marine">
+        {headers[currentPage - 1]}
+      </h1>
+      <p className="text-md font-light text-cool-gray">
+        {subHeaders[currentPage - 1]}
+      </p>
     </header>
   );
 }

@@ -1,6 +1,7 @@
 import { config } from "./appwrite";
 
 const subscriptionService = {
+  //get subscription plans from apprwite db
   async getPlans() {
     const url = `${config.endpoint}/databases/${config.dbID}/collections/${config.col.plans}/documents`;
     try {

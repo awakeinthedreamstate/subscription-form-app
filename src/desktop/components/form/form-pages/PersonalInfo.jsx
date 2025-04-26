@@ -8,9 +8,9 @@ export default function PersonalInfo() {
   const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
   return (
-    <div className="w-[calc(100%-48px)] h-auto mx-auto">
-      <div className="mb-[10px]">
-        <span className="flex justify-between py-[1.5px]">
+    <div className="w-full h-auto mx-auto">
+      <div className="mb-[20px]">
+        <span className="flex justify-between pt-[1.5px] pb-[5px]">
           <label htmlFor="name" className="text-sm font-light text-marine">
             Name
           </label>
@@ -26,8 +26,8 @@ export default function PersonalInfo() {
           placeholder="e.g. Stephen King"
         ></input>
       </div>
-      <div className="mb-[10px]">
-        <span className="flex justify-between py-[1.5px]">
+      <div className="mb-[20px]">
+        <span className="flex justify-between pt-[1.5px] pb-[5px]">
           <label
             htmlFor="email-input"
             className="text-sm font-light text-marine"
@@ -59,7 +59,7 @@ export default function PersonalInfo() {
         ></input>
       </div>
       <div className="">
-        <span className="flex justify-between py-[1.5px]">
+        <span className="flex justify-between pt-[1.5px] pb-[5px]">
           <label
             htmlFor="phone-input"
             className="text-sm font-light text-marine"
