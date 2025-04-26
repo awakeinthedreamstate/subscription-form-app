@@ -23,7 +23,7 @@ export default function NavButtons() {
 
   return (
     <section
-      className={` ${currentPage === 5 ? "hidden" : ""} h-[74px] px-4 w-full absolute bottom-0 bg-alabaster flex justify-between items-center`}
+      className={` ${currentPage === 5 ? "hidden" : ""} h-[74px] px-4 w-full fixed bottom-0 bg-alabaster flex justify-between items-center`}
     >
       <button
         type="button"

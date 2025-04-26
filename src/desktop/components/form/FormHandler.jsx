@@ -7,8 +7,14 @@ import { useFormContext } from "@/context/FormContext";
 // validation and other form-related logic.
 
 export default function FormHandler({ children }) {
-  const { userInfo, setUserInfo, handleSubmit, setCurrentPage, currentPage } =
-    useFormContext();
+  const {
+    userInfo,
+    subscriptionInfo,
+    setUserInfo,
+    handleSubmit,
+    setCurrentPage,
+    currentPage,
+  } = useFormContext();
 
   useEffect(() => {
     console.log("front-page", currentPage);
@@ -16,7 +22,7 @@ export default function FormHandler({ children }) {
 
   const onSubmit = (data) => {
     //increment page number to change pages
-    if (currentPage < 5) {
+    if (currentPage < 5 && subscriptionInfo?.plans) {
       setCurrentPage((prev) => prev + 1);
     }
 

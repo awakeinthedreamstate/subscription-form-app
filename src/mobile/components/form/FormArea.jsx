@@ -39,7 +39,7 @@ export default function FormArea() {
       className="w-[calc(100%-2rem)] sm:w-[calc(100%-8rem)] bg-alabaster rounded-lg relative top-[-72px] h-auto pb-8 mx-auto shadow-md"
       layout
       transition={{
-        duration: 0.3,
+        duration: 0.1,
         ease: "easeInOut",
       }}
     >
@@ -50,7 +50,7 @@ export default function FormArea() {
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.2, delay: 0.1 }}
       >
         {renderPage()}
       </motion.div>

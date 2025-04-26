@@ -1,5 +1,5 @@
 const config = {
-  endpoint: "https://cloud.appwrite.io/v1",
+  endpoint: "https://fra.cloud.appwrite.io/v1",
   projectID: "subscription-form-project",
   dbID: "subscription-form-db",
   col: {

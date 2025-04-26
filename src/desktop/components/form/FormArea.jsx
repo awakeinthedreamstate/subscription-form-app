@@ -40,7 +40,7 @@ export default function FormArea() {
       className="w-full min-w-[527px] lg:px-[40px] xl:px-[84px] h-auto pb-8 mx-auto"
       layout
       transition={{
-        duration: 0.3, // Adjust duration for smoothness
+        duration: 0.1, // Adjust duration for smoothness
         ease: "easeInOut", // Easing function
       }}
     >
@@ -51,7 +51,7 @@ export default function FormArea() {
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.2, delay: 0.1 }}
         className=""
       >
         {renderPage()}
