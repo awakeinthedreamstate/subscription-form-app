@@ -68,6 +68,14 @@
   .subscription-hover-style {
     @apply outline-none ring-1 ring-purple-100 border-purple;
   }
+
+  /*Desktop view margins*/
+  .margin-clamp {
+    margin-top: clamp(10px, calc((100vh - 600px) / 2), 200px);
+    margin-bottom: clamp(10px, calc((100vh - 600px) / 2), 200px);
+    margin-left: clamp(10px, calc((100vw - 940px) / 2), 700px);
+    margin-right: clamp(10px, calc((100vw - 940px) / 2), 700px);
+  }
 }
 
 @font-face {

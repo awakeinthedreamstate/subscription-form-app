@@ -3,14 +3,11 @@ import { useFormContext } from "@/context/FormContext";
 
 export default function NavButtons() {
   const { currentPage, setCurrentPage } = useFormContext();
-  // Define the states for the first and final step of form-filling
+  // Define the states for the first and final step of form
   const [finalStep, setFinalStep] = useState(false);
   const [firstStep, setFirstStep] = useState(false);
 
-  // const handleSubmit = () => {
-  //   console.log("Submit Button clicked");
-  // };
-
+  //change to previous page
   const previousPage = () => {
     console.log("previous page pressed");
     if (currentPage > 1) {
@@ -18,7 +15,7 @@ export default function NavButtons() {
     }
   };
 
-  //check page number to determine if on first or last page
+  //check and set if on first or last page
   useEffect(() => {
     setFirstStep(currentPage === 1);
     setFinalStep(currentPage === 4);
@@ -32,7 +29,7 @@ export default function NavButtons() {
         type="button"
         disabled={firstStep}
         onClick={previousPage}
-        className={`text-cool-gray ${firstStep ? "opacity-0 cursor-not-allowed" : ""}`}
+        className={`text-cool-gray ${firstStep ? "opacity-0" : ""}`}
       >
         Go Back
       </button>

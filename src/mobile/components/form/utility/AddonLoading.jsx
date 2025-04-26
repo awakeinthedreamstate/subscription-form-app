@@ -1,3 +1,4 @@
+//Loading placeholder for addons page
 export default function AddonLoading() {
   return (
     <div className="w-[calc(100%-48px)] h-auto mx-auto flex flex-col gap-3">
@@ -13,8 +14,8 @@ export default function AddonLoading() {
                 className={`w-5 h-5 rounded-sm bg-gray-200 animate-pulse`}
               ></div>
               <div className="flex flex-col gap-[4px]">
-                <div className="w-16 h-4 bg-gray-200 animate-pulse rounded"></div>
-                <div className="w-42 h-4 bg-gray-200 animate-pulse rounded"></div>
+                <div className="w-16 h-4 bg-gray-200 rounded animate-pulse"></div>
+                <div className="h-4 bg-gray-200 rounded w-42 animate-pulse"></div>
               </div>
             </div>
           </div>

@@ -3,6 +3,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useFormContext } from "@/context/FormContext";
 
+// This component is used to manage form submission,
+// validation and other form-related logic.
+
 export default function FormHandler({ children }) {
   const { userInfo, setUserInfo, handleSubmit, setCurrentPage, currentPage } =
     useFormContext();
@@ -30,11 +33,8 @@ export default function FormHandler({ children }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full relative">
+    <form onSubmit={handleSubmit(onSubmit)} className="relative w-full h-full">
       {children}
     </form>
   );
 }
-// This component is a placeholder for the form handler.
-// It can be used to manage form submission, validation,
-// and other form-related logic in the future.

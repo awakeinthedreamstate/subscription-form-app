@@ -1,6 +1,6 @@
-import { useState, Suspense, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useFormContext } from "@/context/FormContext";
-import PlanLoading from "@/mobile/components/form/utility/PlanLoading";
+import PlanLoading from "@/desktop/components/form/utility/PlanLoading";
 import arcadeIcon from "/assets/images/icon-arcade.svg";
 import advancedIcon from "/assets/images/icon-advanced.svg";
 import proIcon from "/assets/images/icon-pro.svg";
@@ -9,6 +9,8 @@ const icons = [arcadeIcon, advancedIcon, proIcon];
 
 export default function subscriptionPlans() {
   const { subscriptionInfo, setUserInfo, userInfo } = useFormContext();
+
+  //initialize state with existing selected plan on component mount
   const [selected, setSelected] = useState(
     userInfo.plan && userInfo.plan.name
       ? subscriptionInfo.plans.find((plan) => plan.name === userInfo.plan.name)
@@ -29,6 +31,7 @@ export default function subscriptionPlans() {
     }));
   };
 
+  //Handle payment cycle toggling
   const handleMonthlyCycle = () => {
     console.log("handling...");
     setUserInfo((prev) => ({
@@ -53,20 +56,19 @@ export default function subscriptionPlans() {
   }
 
   return (
-    <div className="w-full h-auto mx-auto flex flex-col gap-3">
+    <div className="flex flex-col w-full h-auto gap-3 mx-auto">
       <div className="flex gap-[18px]">
         {subscriptionInfo.plans.map((plan, index) => (
           <label
             key={plan.id}
-            className={`flex flex-col hover:ring-1 hover:ring-purple-100 hover:border-purple gap-[42px] justify-between px-[14px] py-[18px] h-auto w-[138px] border rounded-lg cursor-pointer 
-            ${selected === plan.id ? "subscription-select-style" : "border-gray-300"}`}
+            className={`flex flex-col hover:ring-1 hover:ring-purple-100 hover:border-purple gap-[42px] justify-between px-[14px] py-[18px] h-auto min-w-[100px] w-full border rounded-lg ${selected === plan.id ? "subscription-select-style" : "border-gray-300"}`}
           >
             <input
               type="radio"
               name="plan"
               value={plan.id}
               checked={selected === plan.id}
-              onChange={() => handlePlan(plan)} //Change this to handlePlan(plan)
+              onChange={() => handlePlan(plan)}
               className="hidden"
             />
             {/*plan icon*/}
@@ -78,11 +80,11 @@ export default function subscriptionPlans() {
 
             <div className="flex flex-col gap-[8px]">
               {/*plan name*/}
-              <p className="font-medium text-marine leading-none">
+              <p className="font-medium leading-none text-marine">
                 {plan.name}
               </p>
               {/*pricing details*/}
-              <p className="text-cool-gray text-sm leading-none">
+              <p className="text-sm leading-none text-cool-gray">
                 <span>
                   {userInfo.monthlyCycle ? plan.priceMonthly : plan.priceYearly}
                 </span>
@@ -91,7 +93,7 @@ export default function subscriptionPlans() {
               {userInfo.monthlyCycle ? (
                 <></>
               ) : (
-                <p className="text-marine text-sm leading-none">
+                <p className="text-sm leading-none text-marine">
                   2 months free
                 </p>
               )}
@@ -101,7 +103,7 @@ export default function subscriptionPlans() {
       </div>
 
       {/* monthly/yearly subcription toggle */}
-      <div className="bg-magnolia h-12 rounded-lg flex justify-center items-center mt-5">
+      <div className="flex items-center justify-center h-12 mt-5 rounded-lg bg-magnolia">
         <div className="w-[calc(100%-150px)] flex justify-center items-center gap-7">
           <label
             className={`text-sm ${userInfo.monthlyCycle ? "text-marine" : "text-cool-gray"}`}

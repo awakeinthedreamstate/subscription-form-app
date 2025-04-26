@@ -6,6 +6,8 @@ import SubscriptionPlans from "./form-pages/SubscriptionPlans";
 import Addons from "./form-pages/Addons";
 import Summary from "./form-pages/Summary";
 import PurchaseConfirm from "./form-pages/PurchaseConfirm";
+import PlanLoading from "./utility/PlanLoading";
+import AddonLoading from "./utility/AddonLoading";
 
 export default function FormArea() {
   const { currentPage } = useFormContext();
@@ -35,7 +37,7 @@ export default function FormArea() {
 
   return (
     <motion.section
-      className="w-full px-[84px] bg-alabaster h-auto pb-8 mx-auto"
+      className="w-full min-w-[527px] lg:px-[40px] xl:px-[84px] h-auto pb-8 mx-auto"
       layout
       transition={{
         duration: 0.3, // Adjust duration for smoothness

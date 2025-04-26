@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFormContext } from "@/context/FormContext";
 
 export default function FormHeader() {
@@ -19,7 +18,7 @@ export default function FormHeader() {
 
   return (
     <header className="w-[calc(100%-48px)] mx-auto mt-7 mb-[16px]">
-      <h1 className="text-2xl mb-2 text-marine">{headers[currentPage - 1]}</h1>
+      <h1 className="mb-2 text-2xl text-marine">{headers[currentPage - 1]}</h1>
       <p className="font-light text-cool-gray">{subHeaders[currentPage - 1]}</p>
     </header>
   );

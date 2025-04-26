@@ -1,3 +1,4 @@
+//Loading placeholder for Subscription plans page
 export default function PlanLoading() {
   return (
     <div className="w-[calc(100%-48px)] h-auto mx-auto flex flex-col gap-3">
@@ -11,11 +12,11 @@ export default function PlanLoading() {
             <div
               className={`w-10 h-10 flex items-center justify-center text-xl`}
             >
-              <div className="w-10 h-10 bg-gray-200 animate-pulse rounded-full"></div>
+              <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
             </div>
             <div className="flex flex-col gap-[8px]">
-              <div className="w-24 h-4 bg-gray-200 animate-pulse rounded"></div>
-              <div className="w-16 h-4 bg-gray-200 animate-pulse rounded"></div>
+              <div className="w-24 h-4 bg-gray-200 rounded animate-pulse"></div>
+              <div className="w-16 h-4 bg-gray-200 rounded animate-pulse"></div>
             </div>
           </div>
         ))}

@@ -1,17 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "@/context/FormContext";
 
-const subSummary = {
-  plan: "Arcade",
-  billingCycle: true,
-  price: "$9",
-  addons: {
-    title: "Online service",
-    price: "$1",
-  },
-  total: "$10",
-};
-
 export default function Summary() {
   const { subscriptionInfo, userInfo, setCurrentPage } = useFormContext();
   const [totalPrice, setTotalPrice] = useState(0);
@@ -53,16 +42,12 @@ export default function Summary() {
     setCurrentPage(2);
   };
 
-  if (!subscriptionInfo?.addons || !userInfo?.addons) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <>
       <div className="w-full mb-[25px] rounded-lg bg-magnolia h-auto mx-auto flex flex-col pt-5 px-[26px] pb-[26px]">
         <div
           id="cost-summary"
-          className="w-full flex justify-between items-center"
+          className="flex items-center justify-between w-full"
         >
           <div
             id="plan-container"
@@ -73,7 +58,7 @@ export default function Summary() {
               id="change-plan"
               type="button"
               onClick={handleChangePlan}
-              className="text-sm cursor-pointer underline text-cool-gray font-light"
+              className="text-sm font-light underline cursor-pointer text-cool-gray"
             >
               Change
             </button>
@@ -95,12 +80,12 @@ export default function Summary() {
             .map((addon) => (
               <div
                 key={addon.id}
-                className="w-full flex justify-between items-center"
+                className="flex items-center justify-between w-full"
               >
-                <p className="text-sm text-cool-gray leading-none">
+                <p className="text-sm leading-none text-cool-gray">
                   {addon.name}
                 </p>
-                <p className="text-xs text-marine leading-none">{`+${userInfo.monthlyCycle ? addon.priceMonthly : addon.priceYearly}/${userInfo.monthlyCycle ? "mo" : "yr"}`}</p>
+                <p className="text-xs leading-none text-marine">{`+${userInfo.monthlyCycle ? addon.priceMonthly : addon.priceYearly}/${userInfo.monthlyCycle ? "mo" : "yr"}`}</p>
               </div>
             ))}
         </div>
@@ -109,8 +94,8 @@ export default function Summary() {
         id="total-bill"
         className="w-full flex justify-between items-center py-1 px-[26px] mx-auto"
       >
-        <p className="text-sm text-cool-gray leading-none">{`Total (per ${userInfo.monthlyCycle ? "month" : "year"})`}</p>
-        <p className="text-base text-purple leading-none">{`$${totalPrice}/${userInfo.monthlyCycle ? "mo" : "yr"}`}</p>
+        <p className="text-sm leading-none text-cool-gray">{`Total (per ${userInfo.monthlyCycle ? "month" : "year"})`}</p>
+        <p className="text-base leading-none text-purple">{`$${totalPrice}/${userInfo.monthlyCycle ? "mo" : "yr"}`}</p>
       </div>
     </>
   );

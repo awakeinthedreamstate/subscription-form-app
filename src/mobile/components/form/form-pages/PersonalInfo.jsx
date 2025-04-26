@@ -11,18 +11,15 @@ export default function PersonalInfo() {
     <div className="w-[calc(100%-48px)] h-auto mx-auto">
       <div className="mb-[10px]">
         <span className="flex justify-between py-[1.5px]">
-          <label htmlFor="name" className="font-light text-marine text-sm">
+          <label htmlFor="name" className="text-sm font-light text-marine">
             Name
           </label>
           {errors.personalInfo?.name && (
-            <p className="font-medium text-strawberry text-sm">
+            <p className="text-sm font-medium text-strawberry">
               {errors.personalInfo?.name.message}
             </p>
           )}
         </span>
-        {/* <label htmlFor="name" className="font-light text-marine text-sm">
-          Name
-        </label> */}
         <input
           className={`personal-info-input ${errors.personalInfo?.name ? "input-error-state" : "input-no-error-state"} placeholder-weight-bold`}
           {...register("personalInfo.name", { required: ALERT_MESSAGE })}
@@ -33,12 +30,12 @@ export default function PersonalInfo() {
         <span className="flex justify-between py-[1.5px]">
           <label
             htmlFor="email-input"
-            className="font-light text-marine text-sm"
+            className="text-sm font-light text-marine"
           >
             Email
           </label>
           {errors.personalInfo?.email && (
-            <p className="font-medium text-strawberry text-sm">
+            <p className="text-sm font-medium text-strawberry">
               {errors.personalInfo?.email.message}
             </p>
           )}
@@ -65,12 +62,12 @@ export default function PersonalInfo() {
         <span className="flex justify-between py-[1.5px]">
           <label
             htmlFor="phone-input"
-            className="font-light text-marine text-sm"
+            className="text-sm font-light text-marine"
           >
             Phone Number
           </label>
           {errors.personalInfo?.phone && (
-            <p className="font-medium text-strawberry text-sm">
+            <p className="text-sm font-medium text-strawberry">
               {errors.personalInfo?.phone.message}
             </p>
           )}
